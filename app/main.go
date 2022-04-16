@@ -18,7 +18,7 @@ var porta = ":8000"
 var serverShutdownTime = 5 * time.Second
 
 func main() {
-	logger := log.New(os.Stdout, "PASSVALIDATION", 0)
+	logger := log.New(os.Stdout, "PASSVALIDATION: ", 0)
 
 	if err := run(logger); err != nil {
 		logger.Printf("ERROR: %s", err)
