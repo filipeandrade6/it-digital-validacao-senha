@@ -1,5 +1,7 @@
 package validators
 
+import "fmt"
+
 var ValidLowerCase = map[rune]void{
 	65: v, 66: v, 67: v, 68: v, 69: v, 70: v, 71: v, 72: v, 73: v, 74: v,
 	75: v, 76: v, 77: v, 78: v, 79: v, 80: v, 81: v, 82: v, 83: v, 84: v,
@@ -25,7 +27,22 @@ func (h *HasLowerCaseValidater) Check(s string) bool {
 		return false
 	}
 
+	fmt.Println("heelo aqui")
+	fmt.Println("heelo aqui")
+	fmt.Println("heelo aqui")
+	fmt.Println("heelo aqui")
+	fmt.Println("heelo aqui")
+	fmt.Println("heelo aqui")
+	fmt.Printf("%#v", h.Next.(nil))
+	if h.Next == nil {
+		fmt.Println(" é nilllllllllllll")
+	} else {
+		fmt.Println("não é nilll :*(")
+	}
+
 	h.Next.Check(s)
+
+	// if h.Next ==
 
 	return true
 }

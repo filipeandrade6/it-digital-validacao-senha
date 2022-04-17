@@ -10,6 +10,11 @@ Considere uma senha sendo válida quando a mesma possuir as seguintes definiçõ
  - Considere como especial os seguintes caracteres: !@#$%^&*()-+
 - Não possuir caracteres repetidos dentro do conjunto
 
+### LAST
+
+Adicionar uma verificar nos validadores se o campos next existe antes de enviar - ou implementar igual o middleware do gin
+com contador de middlewares e decresce cada vez que executa um (mais trabalhoso...)
+
 
 ### TODO
 

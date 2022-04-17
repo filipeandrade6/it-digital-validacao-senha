@@ -27,7 +27,7 @@ func IsValid(s string) bool {
 	le := &validators.HasValidLengthValidater{}
 	le.SetNext(un)
 
-	fmt.Println("chegou aqui")
+	fmt.Println()
 
 	return le.Check(s)
 }
