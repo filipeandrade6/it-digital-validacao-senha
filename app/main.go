@@ -41,10 +41,10 @@ func run(logger *log.Logger) error {
 	shutdown := make(chan os.Signal, 1)
 	signal.Notify(shutdown, syscall.SIGINT, syscall.SIGTERM)
 
-	// Construct the API to service the requests.
+	// Construct the API.
 	api := handlers.NewAPI()
 
-	// Construct the server to the service the rpi
+	// Construct the server to service the requests.
 	srv := &http.Server{
 		Addr:    porta,
 		Handler: api,
@@ -59,7 +59,6 @@ func run(logger *log.Logger) error {
 	}()
 
 	// ========== SHUTDOWN
-
 	select {
 	case err := <-serverErrors:
 		return fmt.Errorf("server error: %w", err)

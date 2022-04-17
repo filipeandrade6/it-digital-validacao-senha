@@ -7,11 +7,14 @@ import (
 )
 
 func NewAPI() *gin.Engine {
-	// Default With the Logger and Recovery middleware already attached
+	// Default with the Logger and Recovery middleware already attached.
 	router := gin.Default()
 
-	// v1 routes
-	v1.Routes(router)
+	// v1 routes.
+	v1grp := router.Group("/v1")
+	{
+		v1grp.POST("/validate", v1.Validate)
+	}
 
 	return router
 }
