@@ -23,7 +23,9 @@ func (h *HasUniqueCharactersValidater) Check(s string) bool {
 		return false
 	}
 
-	h.Next.Check(s)
+	if h.Next != nil {
+		return h.Next.Check(s)
+	}
 
 	return true
 }

@@ -1,10 +1,5 @@
 package validators
 
-var validSymbol = map[rune]void{
-	33: v, 64: v, 35: v, 36: v, 37: v, 94: v, 38: v, 42: v, 40: v, 41: v,
-	45: v, 43: v,
-}
-
 func hasSymbol(s string) bool {
 	for _, char := range s {
 		if _, ok := validSymbol[char]; ok {
@@ -24,7 +19,9 @@ func (h *HasSymbolValidater) Check(s string) bool {
 		return false
 	}
 
-	h.Next.Check(s)
+	if h.Next != nil {
+		return h.Next.Check(s)
+	}
 
 	return true
 }

@@ -1,12 +1,8 @@
 package validators
 
-var ValidNumber = map[rune]void{
-	48: v, 49: v, 50: v, 51: v, 52: v, 53: v, 54: v, 55: v, 56: v, 57: v,
-}
-
 func hasNumber(s string) bool {
 	for _, char := range s {
-		if _, ok := ValidNumber[char]; ok {
+		if _, ok := validNumber[char]; ok {
 			return true
 		}
 	}
@@ -23,7 +19,9 @@ func (h *HasNumberValidater) Check(s string) bool {
 		return false
 	}
 
-	h.Next.Check(s)
+	if h.Next != nil {
+		return h.Next.Check(s)
+	}
 
 	return true
 }

@@ -23,6 +23,7 @@ func Validate(c *gin.Context) {
 
 	if !validation.IsValid(jsonPass.Password) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": tipMessage})
+		return
 	}
 
 	c.JSON(http.StatusOK, gin.H{"status": "you are logged in"})
