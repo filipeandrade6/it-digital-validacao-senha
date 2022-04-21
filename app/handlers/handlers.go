@@ -13,7 +13,8 @@ func NewAPI() *gin.Engine {
 	// v1 routes.
 	v1grp := router.Group("/v1")
 	{
-		v1grp.POST("/validate", v1.Validate)
+		vld := v1.NewValidator()
+		v1grp.POST("/validate", vld.Validate)
 	}
 
 	return router

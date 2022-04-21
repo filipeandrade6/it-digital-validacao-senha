@@ -12,10 +12,6 @@ Considere uma senha sendo válida quando a mesma possuir as seguintes definiçõ
 
 ### LAST
 
-Adicionar uma verificar nos validadores se o campos next existe antes de enviar - ou implementar igual o middleware do gin
-com contador de middlewares e decresce cada vez que executa um (mais trabalhoso...)
-
-
 ### TODO
 
 - [ ] Tracing suport.

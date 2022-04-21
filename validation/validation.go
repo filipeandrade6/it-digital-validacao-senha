@@ -3,25 +3,38 @@ package validation
 import (
 	"fmt"
 
-	"github.com/filipeandrade6/iti-digital-desafio-backend/business/validation/validators"
+	"github.com/filipeandrade6/iti-digital-desafio-backend/validation/validators"
 )
+
+// ! toda vez é instanciado as estruturas - fazer para criar uma vez...
 
 func IsValid(s string) bool {
 	uc := &validators.HasUpperCaseValidater{}
 	lc := &validators.HasLowerCaseValidater{}
-	lc.SetNext(uc)
 	sy := &validators.HasSymbolValidater{}
-	sy.SetNext(lc)
 	nu := &validators.HasNumberValidater{}
-	nu.SetNext(sy)
 	vc := &validators.HasValidCharactersValidater{}
-	vc.SetNext(nu)
 	un := &validators.HasUniqueCharactersValidater{}
-	un.SetNext(vc)
 	le := &validators.HasValidLengthValidater{}
+
+	lc.SetNext(uc)
+	sy.SetNext(lc)
+	nu.SetNext(sy)
+	vc.SetNext(nu)
+	un.SetNext(vc)
 	le.SetNext(un)
 
 	fmt.Println()
 
 	return le.Check(s)
+}
+
+type Validator struct{}
+
+func NewValidator() *Validator {
+	return &Validator{}
+}
+
+func (v *Validator) IsValid(s string) bool {
+	return true
 }

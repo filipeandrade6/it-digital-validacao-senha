@@ -1,9 +1,9 @@
 package validators
 
-type validater interface {
-	Check(s string) bool
-	SetNext(validater)
-}
+// type validater interface {
+// 	Check(s string) bool
+// 	SetNext(validater)
+// }
 
 // sugar for struct{}
 type void struct{}
@@ -13,6 +13,8 @@ var v void
 type Options func()
 
 // Go maps containing the ASCII decimal representation of the valid characters.
+
+// ! criar map já com conversão rune(0), rune(a), rune(A), rune(#)
 
 // numbers: 0-9 => 48-57.
 var validNumber = map[rune]void{
