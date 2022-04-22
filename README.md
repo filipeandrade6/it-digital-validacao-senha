@@ -14,6 +14,8 @@ Considere uma senha sendo válida quando a mesma possuir as seguintes definiçõ
 
 ### TODO
 
+- [ ] Refactor the v1 Handle to remove struct
+- [ ] Custom type for func(string) bool
 - [ ] Tracing suport.
 - [ ] structured logging.
 - [ ] tudo em inglês.

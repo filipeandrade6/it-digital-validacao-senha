@@ -27,11 +27,6 @@ func (v *Validator) Validate(c *gin.Context) {
 		return
 	}
 
-	// if !validation.IsValid(jsonPass.Password) {
-	// 	c.JSON(http.StatusBadRequest, gin.H{"error": "your pass should have..."})
-	// 	return
-	// }
-
 	if !v.validator(jsonPass.Password) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "your pass should have..."})
 		return
