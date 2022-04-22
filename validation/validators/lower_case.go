@@ -1,9 +1,6 @@
 package validators
 
-import "fmt"
-
 func hasLowerCase(s string) bool {
-	fmt.Println("...hasLowerCase")
 	for _, char := range s {
 		if _, ok := validLowerCase[char]; ok {
 			return true

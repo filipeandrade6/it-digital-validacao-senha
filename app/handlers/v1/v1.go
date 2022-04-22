@@ -15,10 +15,13 @@ type Validator struct {
 	validator func(string) bool
 }
 
+// TODO receber middlewares e verficar se não foi definido = NewDefaultValidator
 func NewValidator() *Validator {
 	v := validation.NewDefaultValidator()
 	return &Validator{v}
 }
+
+// type Validator func(string) bool
 
 func (v *Validator) Validate(c *gin.Context) {
 	var jsonPass data.Password
@@ -26,6 +29,9 @@ func (v *Validator) Validate(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+
+	// if !v(jsonPass.Password) {
+	// }
 
 	if !v.validator(jsonPass.Password) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "your pass should have..."})
