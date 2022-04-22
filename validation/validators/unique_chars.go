@@ -14,7 +14,8 @@ func hasUniqueChars(s string) bool {
 	return true
 }
 
-func HasUniqueCharsMW(f func(s string) bool) func(s string) bool {
+// HasUniqueChras checks if the provided string has unique characters.
+func HasUniqueChars(f func(s string) bool) func(s string) bool {
 	return func(s string) bool {
 		if !hasUniqueChars(s) {
 			return false

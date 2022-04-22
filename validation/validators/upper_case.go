@@ -10,7 +10,8 @@ func hasUpperCase(s string) bool {
 	return false
 }
 
-func HasUpperCaseMW(f func(s string) bool) func(s string) bool {
+// HasUpperCase checks if the provided string has upper-cased letter.
+func HasUpperCase(f func(s string) bool) func(s string) bool {
 	return func(s string) bool {
 		if !hasUpperCase(s) {
 			return false

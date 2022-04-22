@@ -1,8 +1,12 @@
 package validation
 
-import "testing"
+import (
+	"testing"
 
-func TestIsValid(t *testing.T) {
+	"github.com/filipeandrade6/iti-digital-desafio-backend/validation/validators"
+)
+
+func TestDefaultValidator(t *testing.T) {
 	v := NewDefaultValidator()
 
 	type args struct {
@@ -35,5 +39,21 @@ func TestIsValid(t *testing.T) {
 				t.Errorf("isValid() = %v, want %v", got, tt.want)
 			}
 		})
+	}
+}
+
+func TestEmptyValidator(t *testing.T) {
+	v := NewValidator()
+
+	if !v("") {
+		t.Errorf("Should return true for empty password without any validators.")
+	}
+}
+
+func TestOnlyValidLengthValidator(t *testing.T) {
+	v := NewValidator(validators.HasValidLength)
+
+	if v("123") {
+		t.Errorf("Should return false for invalid length password with only Valid Length Validator.")
 	}
 }

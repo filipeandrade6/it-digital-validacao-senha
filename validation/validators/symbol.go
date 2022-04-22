@@ -10,7 +10,8 @@ func hasSymbol(s string) bool {
 	return false
 }
 
-func HasSymbolMW(f func(s string) bool) func(s string) bool {
+// HasSymbol checks if the provided string has the valid symbols.
+func HasSymbol(f func(s string) bool) func(s string) bool {
 	return func(s string) bool {
 		if !hasSymbol(s) {
 			return false

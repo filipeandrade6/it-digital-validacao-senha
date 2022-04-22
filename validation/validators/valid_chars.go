@@ -10,7 +10,8 @@ func hasValidChars(s string) bool {
 	return true
 }
 
-func HasValidCharsMW(f func(s string) bool) func(s string) bool {
+// HasValidChars checks if the provided string has valid characters.
+func HasValidChars(f func(s string) bool) func(s string) bool {
 	return func(s string) bool {
 		if !hasValidChars(s) {
 			return false

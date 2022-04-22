@@ -1,54 +1,50 @@
 package validators
 
-// type validater interface {
-// 	Check(s string) bool
-// 	SetNext(validater)
-// }
-
 // sugar for struct{}
 type void struct{}
 
-var v void
+var (
+	// sugar for struct{}{}
+	v void
 
-type Options func()
+	// Numbers: 0-9.
+	validNumber = map[rune]void{
+		rune('0'): v, rune('1'): v, rune('2'): v, rune('3'): v, rune('4'): v, rune('5'): v,
+		rune('6'): v, rune('7'): v, rune('8'): v, rune('9'): v,
+	}
 
-// Go maps containing the ASCII decimal representation of the valid characters.
+	// Symbols: !, @, #, $, %, ^, &, *, (, ), -, +.
+	validSymbol = map[rune]void{
+		rune('!'): v, rune('@'): v, rune('#'): v, rune('$'): v, rune('%'): v, rune('^'): v,
+		rune('&'): v, rune('*'): v, rune('('): v, rune(')'): v, rune('-'): v, rune('+'): v,
+	}
 
-// ! criar map já com conversão rune(0), rune(a), rune(A), rune(#)
+	// Lower-case letters: a-z.
+	validLowerCase = map[rune]void{
+		rune('a'): v, rune('b'): v, rune('c'): v, rune('d'): v, rune('e'): v, rune('f'): v,
+		rune('g'): v, rune('h'): v, rune('i'): v, rune('j'): v, rune('k'): v, rune('l'): v,
+		rune('m'): v, rune('n'): v, rune('o'): v, rune('p'): v, rune('q'): v, rune('r'): v,
+		rune('s'): v, rune('t'): v, rune('u'): v, rune('v'): v, rune('w'): v, rune('x'): v,
+		rune('y'): v, rune('z'): v,
+	}
 
-// numbers: 0-9 => 48-57.
-var validNumber = map[rune]void{
-	48: v, 49: v, 50: v, 51: v, 52: v, 53: v, 54: v, 55: v, 56: v, 57: v,
-}
+	// Upper-case letters: A-Z.
+	validUpperCase = map[rune]void{
+		rune('A'): v, rune('B'): v, rune('C'): v, rune('D'): v, rune('E'): v, rune('F'): v,
+		rune('G'): v, rune('H'): v, rune('I'): v, rune('J'): v, rune('K'): v, rune('L'): v,
+		rune('M'): v, rune('N'): v, rune('O'): v, rune('P'): v, rune('Q'): v, rune('R'): v,
+		rune('S'): v, rune('T'): v, rune('U'): v, rune('V'): v, rune('W'): v, rune('X'): v,
+		rune('Y'): v, rune('Z'): v,
+	}
 
-// symbols: ![33], @[64], #[35], $[36], %[37], ^[94], &[38], *[42], ([40], )[41], -[45], +[43].
-var validSymbol = map[rune]void{
-	33: v, 64: v, 35: v, 36: v, 37: v, 94: v, 38: v, 42: v, 40: v, 41: v,
-	45: v, 43: v,
-}
+	// Valid characters: merge from above.
+	validCharacters map[rune]void = make(map[rune]void)
+)
 
-// lower-case letters: a-z => 97-122.
-var validLowerCase = map[rune]void{
-	65: v, 66: v, 67: v, 68: v, 69: v, 70: v, 71: v, 72: v, 73: v, 74: v,
-	75: v, 76: v, 77: v, 78: v, 79: v, 80: v, 81: v, 82: v, 83: v, 84: v,
-	85: v, 86: v, 87: v, 88: v, 89: v, 90: v,
-}
-
-// upper-case letters: A-Z => 65-90.
-var validUpperCase = map[rune]void{
-	97: v, 98: v, 99: v, 100: v, 101: v, 102: v, 103: v, 104: v, 105: v, 106: v,
-	107: v, 108: v, 109: v, 110: v, 111: v, 112: v, 113: v, 114: v, 115: v, 116: v,
-	117: v, 118: v, 119: v, 120: v, 121: v, 122: v,
-}
-
-// valid characters (merged from all above).
-var validCharacters map[rune]void = map[rune]void{
-	33: v, 35: v, 36: v, 37: v, 38: v, 40: v, 41: v, 42: v, 43: v, 45: v,
-	48: v, 49: v, 50: v, 51: v, 52: v, 53: v, 54: v, 55: v, 56: v, 57: v,
-	64: v, 65: v, 66: v, 67: v, 68: v, 69: v, 70: v, 71: v, 72: v, 73: v,
-	74: v, 75: v, 76: v, 77: v, 78: v, 79: v, 80: v, 81: v, 82: v, 83: v,
-	84: v, 85: v, 86: v, 87: v, 88: v, 89: v, 90: v, 94: v, 97: v, 98: v,
-	99: v, 100: v, 101: v, 102: v, 103: v, 104: v, 105: v, 106: v, 107: v, 108: v,
-	109: v, 110: v, 111: v, 112: v, 113: v, 114: v, 115: v, 116: v, 117: v, 118: v,
-	119: v, 120: v, 121: v, 122: v,
+func init() {
+	for _, m := range []map[rune]void{validNumber, validSymbol, validLowerCase, validUpperCase} {
+		for k, v := range m {
+			validCharacters[k] = v
+		}
+	}
 }

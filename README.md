@@ -14,7 +14,7 @@ Considere uma senha sendo válida quando a mesma possuir as seguintes definiçõ
 
 ### TODO
 
-- [ ] Custom validator without some validations
+- [ ] Fuzz tests
 - [ ] Refactor the v1 Handle to remove struct
 - [ ] Custom type for func(string) bool
 - [ ] Tracing suport.

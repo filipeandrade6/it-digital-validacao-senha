@@ -10,7 +10,8 @@ func hasNumber(s string) bool {
 	return false
 }
 
-func HasNumberMW(f func(s string) bool) func(s string) bool {
+// HasNumber checks if the provided string has number.
+func HasNumber(f func(s string) bool) func(s string) bool {
 	return func(s string) bool {
 		if !hasNumber(s) {
 			return false

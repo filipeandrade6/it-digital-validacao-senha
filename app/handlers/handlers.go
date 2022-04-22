@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// NewAPI create a router with the routes and middlewares attached.
 func NewAPI() *gin.Engine {
 	// Default with the Logger and Recovery middleware already attached.
 	router := gin.Default()
