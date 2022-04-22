@@ -19,7 +19,7 @@ func NewValidator(mws ...func(func(string) bool) func(string) bool) func(string)
 }
 
 // NewDefaultValidator creates a function with the default validators for password
-// including length, unique characters, number, symbol, lower and upper cased letters
+// including length, unique characters, number, symbol, lower-cased letters, upper-cased letters
 // and valid characters in that order.
 func NewDefaultValidator() func(string) bool {
 	vlds := []func(func(string) bool) func(string) bool{

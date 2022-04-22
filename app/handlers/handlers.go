@@ -8,14 +8,13 @@ import (
 
 // NewAPI create a router with the routes and middlewares attached.
 func NewAPI() *gin.Engine {
-	// Default with the Logger and Recovery middleware already attached.
 	router := gin.Default()
 
 	// v1 routes.
 	v1grp := router.Group("/v1")
 	{
 		vld := v1.NewValidator()
-		v1grp.POST("/validate", vld.Validate)
+		v1grp.POST("/validate", vld.ValidateHandle)
 	}
 
 	return router

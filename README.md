@@ -14,6 +14,9 @@ Considere uma senha sendo válida quando a mesma possuir as seguintes definiçõ
 
 ### TODO
 
+- [ ] Return with validator failed to the client (missing number, symbol, etc...)
+- [ ] Adicionar a abordagem do problema aqui no README
+- [ ] Rename validation/validators...
 - [ ] Fuzz tests
 - [ ] Refactor the v1 Handle to remove struct
 - [ ] Custom type for func(string) bool
