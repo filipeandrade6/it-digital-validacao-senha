@@ -1,6 +1,9 @@
 package validators
 
+import "fmt"
+
 func hasUniqueChars(s string) bool {
+	fmt.Println("...hasUniqueChars")
 	var charsInString map[rune]struct{} = make(map[rune]struct{}, len(s))
 
 	for _, char := range s {
@@ -14,7 +17,7 @@ func hasUniqueChars(s string) bool {
 	return true
 }
 
-func HasUniqueCharactersMW(f func(s string) bool) func(s string) bool {
+func HasUniqueCharsMW(f func(s string) bool) func(s string) bool {
 	return func(s string) bool {
 		if !hasUniqueChars(s) {
 			return false

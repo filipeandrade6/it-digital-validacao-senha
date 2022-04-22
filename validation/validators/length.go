@@ -1,6 +1,9 @@
 package validators
 
+import "fmt"
+
 func hasValidLength(s string) bool {
+	fmt.Println("...hasValidLength")
 	return (len(s) >= 9)
 }
 

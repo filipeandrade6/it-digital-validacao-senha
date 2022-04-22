@@ -1,6 +1,9 @@
 package validators
 
+import "fmt"
+
 func hasUpperCase(s string) bool {
+	fmt.Println("...hasUpperCase")
 	for _, char := range s {
 		if _, ok := validUpperCase[char]; ok {
 			return true

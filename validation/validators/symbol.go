@@ -1,6 +1,9 @@
 package validators
 
+import "fmt"
+
 func hasSymbol(s string) bool {
+	fmt.Println("...hasSymbol")
 	for _, char := range s {
 		if _, ok := validSymbol[char]; ok {
 			return true
