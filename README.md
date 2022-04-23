@@ -1,3 +1,5 @@
+Fazer o teste de integração
+
 ### Desafio
 
 Considere uma senha sendo válida quando a mesma possuir as seguintes definições:
@@ -10,34 +12,9 @@ Considere uma senha sendo válida quando a mesma possuir as seguintes definiçõ
  - Considere como especial os seguintes caracteres: !@#$%^&*()-+
 - Não possuir caracteres repetidos dentro do conjunto
 
-### LAST
-
-### TODO
-
-- [ ] Return with validator failed to the client (missing number, symbol, etc...)
-- [ ] Adicionar a abordagem do problema aqui no README
-- [ ] Rename validation/validators...
-- [ ] Fuzz tests
-- [ ] Refactor the v1 Handle to remove struct
-- [ ] Custom type for func(string) bool
-- [ ] Tracing suport.
-- [ ] structured logging.
-- [ ] tudo em inglês.
+### Como executar
 
 
-O que aprender...
-
-Patterns
-DDD
-SOLID
+### Abordagem
 
 
-Tecnologias
-
-Cloud
-
-Kubernetes - básico (ver service do ardan labs e algum vídeo)
-RabbitMQ/Redis - implementar alguma coisa
-NATS - ?
-Apache Kafka
-gRPC
