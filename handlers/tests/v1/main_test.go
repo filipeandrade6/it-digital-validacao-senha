@@ -16,10 +16,6 @@ import (
 func TestValidateHandler(t *testing.T) {
 	router := handlers.NewAPI(zap.NewNop())
 
-	// payload := strings.NewReader("{\"password\": \"1234\"}/")
-	// req := httptest.NewRequest(http.MethodGet, "/v1/validate", payload)
-	// router.ServeHTTP(w, req)
-
 	tests := []struct {
 		name        string
 		payload     string
