@@ -40,7 +40,7 @@ func (v *Validator) ValidateHandle(c *gin.Context) {
 			zap.String("ip", c.ClientIP()),
 			zap.String("path", c.FullPath()),
 		)
-		c.JSON(http.StatusBadRequest, gin.H{"status": "invalid payload"})
+		c.JSON(http.StatusBadRequest, gin.H{"is_valid": false})
 		return
 	}
 
@@ -52,7 +52,7 @@ func (v *Validator) ValidateHandle(c *gin.Context) {
 			zap.String("ip", c.ClientIP()),
 			zap.String("path", c.FullPath()),
 		)
-		c.JSON(http.StatusBadRequest, gin.H{"status": "invalid password"})
+		c.JSON(http.StatusBadRequest, gin.H{"is_valid": false})
 		return
 	}
 
@@ -63,5 +63,5 @@ func (v *Validator) ValidateHandle(c *gin.Context) {
 		zap.String("ip", c.ClientIP()),
 		zap.String("path", c.FullPath()),
 	)
-	c.JSON(http.StatusOK, gin.H{"status": "good to go :)"})
+	c.JSON(http.StatusOK, gin.H{"is_valid": true})
 }

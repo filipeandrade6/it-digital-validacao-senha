@@ -22,15 +22,15 @@ func TestValidateHandler(t *testing.T) {
 		wantCode    int
 		wantMessage string
 	}{
-		{"wrong request payload", "{\"wrong\": \"AbTp9!fok\"}/", 400, "{\"status\":\"invalid payload\"}"},
-		{"no password", "{\"password\": \"\"}/", 400, "{\"status\":\"invalid payload\"}"},
-		{"invalid length", "{\"password\": \"abcDEF1!\"}/", 400, "{\"status\":\"invalid password\"}"},
-		{"missing number", "{\"password\": \"abcdefghiA!\"}/", 400, "{\"status\":\"invalid password\"}"},
-		{"missing symbol", "{\"password\": \"abcdefghiA1\"}/", 400, "{\"status\":\"invalid password\"}"},
-		{"missing lower case", "{\"password\": \"ABCDEFGHI1!\"}/", 400, "{\"status\":\"invalid password\"}"},
-		{"missing upper case", "{\"password\": \"abcdefghi1!\"}/", 400, "{\"status\":\"invalid password\"}"},
-		{"repeated character", "{\"password\": \"abcdefghiA1!a\"}/", 400, "{\"status\":\"invalid password\"}"},
-		{"valid password", "{\"password\": \"AbTp9!fok\"}/", 200, "{\"status\":\"good to go :)\"}"},
+		{"wrong request payload", "{\"wrong\": \"AbTp9!fok\"}/", 400, "{\"is_valid\":false}"},
+		{"no password", "{\"password\": \"\"}/", 400, "{\"is_valid\":false}"},
+		{"invalid length", "{\"password\": \"abcDEF1!\"}/", 400, "{\"is_valid\":false}"},
+		{"missing number", "{\"password\": \"abcdefghiA!\"}/", 400, "{\"is_valid\":false}"},
+		{"missing symbol", "{\"password\": \"abcdefghiA1\"}/", 400, "{\"is_valid\":false}"},
+		{"missing lower case", "{\"password\": \"ABCDEFGHI1!\"}/", 400, "{\"is_valid\":false}"},
+		{"missing upper case", "{\"password\": \"abcdefghi1!\"}/", 400, "{\"is_valid\":false}"},
+		{"repeated character", "{\"password\": \"abcdefghiA1!a\"}/", 400, "{\"is_valid\":false}"},
+		{"valid password", "{\"password\": \"AbTp9!fok\"}/", 200, "{\"is_valid\":true}"},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -67,15 +67,15 @@ func TestCustomValidateHandler(t *testing.T) {
 		wantCode    int
 		wantMessage string
 	}{
-		{"wrong request payload", "{\"wrong\": \"AbTp9!fok\"}/", 400, "{\"status\":\"invalid payload\"}"},
-		{"no password", "{\"password\": \"\"}/", 400, "{\"status\":\"invalid payload\"}"},
-		{"invalid length", "{\"password\": \"abcDEF1!\"}/", 200, "{\"status\":\"good to go :)\"}"},
-		{"missing number", "{\"password\": \"abcdefghiA!\"}/", 200, "{\"status\":\"good to go :)\"}"},
-		{"missing symbol", "{\"password\": \"abcdefghiA1\"}/", 200, "{\"status\":\"good to go :)\"}"},
-		{"missing lower case", "{\"password\": \"ABCDEFGHI1!\"}/", 400, "{\"status\":\"invalid password\"}"},
-		{"missing upper case", "{\"password\": \"abcdefghi1!\"}/", 200, "{\"status\":\"good to go :)\"}"},
-		{"repeated character", "{\"password\": \"abcdefghiA1!a\"}/", 400, "{\"status\":\"invalid password\"}"},
-		{"valid password", "{\"password\": \"AbTp9!fok\"}/", 200, "{\"status\":\"good to go :)\"}"},
+		{"wrong request payload", "{\"wrong\": \"AbTp9!fok\"}/", 400, "{\"is_valid\":false}"},
+		{"no password", "{\"password\": \"\"}/", 400, "{\"is_valid\":false}"},
+		{"invalid length", "{\"password\": \"abcDEF1!\"}/", 200, "{\"is_valid\":true}"},
+		{"missing number", "{\"password\": \"abcdefghiA!\"}/", 200, "{\"is_valid\":true}"},
+		{"missing symbol", "{\"password\": \"abcdefghiA1\"}/", 200, "{\"is_valid\":true}"},
+		{"missing lower case", "{\"password\": \"ABCDEFGHI1!\"}/", 400, "{\"is_valid\":false}"},
+		{"missing upper case", "{\"password\": \"abcdefghi1!\"}/", 200, "{\"is_valid\":true}"},
+		{"repeated character", "{\"password\": \"abcdefghiA1!a\"}/", 400, "{\"is_valid\":false}"},
+		{"valid password", "{\"password\": \"AbTp9!fok\"}/", 200, "{\"is_valid\":true}"},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
