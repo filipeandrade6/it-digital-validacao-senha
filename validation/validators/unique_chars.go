@@ -1,7 +1,7 @@
 package validators
 
 func hasUniqueChars(s string) bool {
-	var charsInString map[rune]struct{} = make(map[rune]struct{}, len(s))
+	var charsInString = make(map[rune]struct{}, len(s))
 
 	for _, char := range s {
 		if _, alreadyExist := charsInString[char]; alreadyExist {
@@ -14,7 +14,7 @@ func hasUniqueChars(s string) bool {
 	return true
 }
 
-// HasUniqueChras checks if the provided string has unique characters.
+// HasUniqueChars checks if the provided string has unique characters.
 func HasUniqueChars(f func(s string) bool) func(s string) bool {
 	return func(s string) bool {
 		if !hasUniqueChars(s) {

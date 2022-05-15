@@ -1,3 +1,4 @@
+// Package v1 manages the version 1 of the API.
 package v1
 
 import (

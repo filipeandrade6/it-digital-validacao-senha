@@ -1,3 +1,4 @@
+// Package handlers manages the different versions and endpoints of the API.
 package handlers
 
 import (

@@ -1,3 +1,5 @@
+// Package validators manages the validators utilized to check the data provided if meet
+// the desired criteria. It also initialize the maps containing the allowed characters.
 package validators
 
 // sugar for struct{}

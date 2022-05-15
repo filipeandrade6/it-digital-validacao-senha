@@ -1,3 +1,4 @@
+// Package validation manages the creation of the Validator.
 package validation
 
 import (
