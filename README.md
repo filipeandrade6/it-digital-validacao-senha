@@ -1,10 +1,3 @@
-O que é testes e integração
-o que será avaliado - testes de unidade/integração
-design de api
-clean code
-solid
-documentação da solução no README
-
 ### Desafio
 
 Considere uma senha sendo válida quando a mesma possuir as seguintes definições:
@@ -17,20 +10,30 @@ Considere uma senha sendo válida quando a mesma possuir as seguintes definiçõ
  - Considere como especial os seguintes caracteres: !@#$%^&*()-+
 - Não possuir caracteres repetidos dentro do conjunto
 
+---
+
 - Input: uma senha (string)
 - Output: um boolean indicando se a senha é válida
 
 ### Como executar
 
-Preparar um make
-Fazer códigos unitários da funções
+1. Na raiz da aplicação onde contém o arquivo `makefile`
+1. Execute o comando `make build` para construir e em seguida `make run` para iniciar o container Docker contendo a aplicação. Como alternativa execute o comando `make up` para construir e iniciar a aplicação
+1. O serviço é exposto na porta `8080` e amarrado na porta 8080 da máquina local.
+1. Para executar os testes, com o ambiente Go instalado, execute o comando `make tests`
+1. Para testar, fazer uma requisção utilizado `curl` -> `curl -v -X POST localhost:8080/v1/validate -d '{"password": "AbTp9!fok"}' | jq`
+1. O comando `make stop` para a execução a aplicação.
 
 ### Abordagem
 
-Nesta etapa do processo seletivo queremos entender as decisões por trás do código, portanto é fundamental que o README tenha algumas informações referentes a sua solução.
+Tecnologia utilizadas:
+- go
+- gin - go web framework
+- zap - uber's go logging package
+- docker
 
-Algumas dicas do que esperamos ver são:
+A ideia principal é a criação de um package em go (validation/validators/...) contendo os critérios de validação de senha. Os critérios podem ser utilizados de forma única ou em conjunto, utilizando um padrão semelhante como os middlewares são utilizados em go, ou o padrão Chain of Responsibility. Dentro do package, cada arquivo implementa uma validação, onde, se caso necessário,  a modificação ou extensão com mais validadores, a extensão acontece em único ponto.
 
-Instruções básicas de como executar o projeto;
-Detalhes sobre a sua solução, gostariamos de saber qual foi seu racional nas decisões;
-Caso algo não esteja claro e você precisou assumir alguma premissa, quais foram e o que te motivou a tomar essas decisões.
+O endpoint é versionado e declarado como v1/validate, e validação é feita encaminhando no corpo do payload um JSON contendo o campo `password` do tipo string; a aplicação responde com um JSON contendo o campo `is_valid` do tipo boolean, sendo `true` caso a senha atenda os critérios ou `false` caso contrário.
+
+Para a critérios de validação de tipo de caractere, foi utilizado mapas (validation/validators/validators.go) em golang, que se comporta como uma hashtable, o qual contém os caracteres válidos, esses mapas são inicializados junto a aplicação. Caso não indique no código quais validadores utilizar, a aplicação inicia utilizando o DefaultValidator que emprega os critérios definidos pelo desafio.
